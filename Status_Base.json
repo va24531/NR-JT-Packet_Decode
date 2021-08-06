@@ -1,0 +1,157 @@
+[
+    {
+        "id": "25db3b10.5ea3d4",
+        "type": "ui_template",
+        "z": "2dc86f2b.14fd68",
+        "group": "a8bcedbe.f9cf88",
+        "name": "Selected Contact Details",
+        "order": 1,
+        "width": 16,
+        "height": 2,
+        "format": "<table style=\"width: 100%\">\n\t<tr>\n\t\t<td style=\"width: 85px\">Time</td><td style=\"width: 40px\">Band</td><td style=\"width: 50px\">Signal</td><td style=\"width: 120px\">Station Call</td><td>Grid</td><td style=\"width: 200px\">Country</td><td style=\"width: 120px\">Bearing</td><td style=\"width: 80px\">Distance</td></tr>\n\t<tr>\n\t\t<td style=\"width: 85px\">1</td>\n\t\t<td style=\"width: 40px\">{{msg.dial_freq}}</td>\n\t\t<td style=\"width: 50px\">{{msg.dx_call_snr}}</td>\n\t\t<td style=\"width: 100px\">{{msg.dx_call}}</td>\n\t\t<td>{{msg.dx_call_grid}}</td>\n\t\t<td style=\"width: 200px\">{{msg.target_country}}</td>\n\t\t<td style=\"width: 100px\">{{msg.origin_bearing}}&deg;<br>{{msg.origin_bearing_name}}</td>\n\t\t<td style=\"width: 100px\">{{msg.origin_distance_miles}}<br>Miles</td>\n\t</tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 910,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3124e19.b748b8",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "Status Message Decode / Process",
+        "func": "\n// Need Additional Checks In Place For Text\n//\n\n// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1620,
+        "wires": [
+            [
+                "25db3b10.5ea3d4",
+                "66ec17ec.b74e48"
+            ]
+        ]
+    },
+    {
+        "id": "66ec17ec.b74e48",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "Check Rotor Status",
+        "func": "\n flow.set('selected_bearing',msg.origin_bearing);\n \nif (!isNaN(msg.origin_bearing)){msg.enabled = true;} else {msg.enabled = false;}\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1620,
+        "wires": [
+            [
+                "3260faeb.a6b1d6"
+            ]
+        ]
+    },
+    {
+        "id": "b27fb642.90f728",
+        "type": "debug",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "157d43f.602aebc",
+        "type": "link in",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "links": [
+            "8084c530.af563"
+        ],
+        "x": 415,
+        "y": 1580,
+        "wires": [
+            [
+                "d3124e19.b748b8",
+                "872d2172.178848"
+            ]
+        ]
+    },
+    {
+        "id": "872d2172.178848",
+        "type": "debug",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "3260faeb.a6b1d6",
+        "type": "ui_button",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "group": "a8bcedbe.f9cf88",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Rotate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "selected_bearing",
+        "payloadType": "flow",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1070,
+        "y": 1620,
+        "wires": [
+            [
+                "b27fb642.90f728"
+            ]
+        ]
+    },
+    {
+        "id": "a8bcedbe.f9cf88",
+        "type": "ui_group",
+        "name": "Currently Selected Contact",
+        "tab": "9aeb9b49.3d98",
+        "order": 3,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "9aeb9b49.3d98",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

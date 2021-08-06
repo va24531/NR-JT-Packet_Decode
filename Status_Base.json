@@ -24,7 +24,7 @@
         "type": "function",
         "z": "2dc86f2b.14fd68",
         "name": "Status Message Decode / Process",
-        "func": "\n// Need Additional Checks In Place For Text\n//\n\n// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\nreturn msg;",
+        "func": "\n// Need Additional Checks In Place For Text\n//\n\n// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    //msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",

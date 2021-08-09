@@ -1,3 +1,4 @@
+
 [
     {
         "id": "25db3b10.5ea3d4",
@@ -8,7 +9,7 @@
         "order": 1,
         "width": 16,
         "height": 2,
-        "format": "<table style=\"width: 100%\">\n\t<tr>\n\t\t<td style=\"width: 85px\">Time</td><td style=\"width: 40px\">Band</td><td style=\"width: 50px\">Signal</td><td style=\"width: 120px\">Station Call</td><td>Grid</td><td style=\"width: 200px\">Country</td><td style=\"width: 120px\">Bearing</td><td style=\"width: 80px\">Distance</td></tr>\n\t<tr>\n\t\t<td style=\"width: 85px\">1</td>\n\t\t<td style=\"width: 40px\">{{msg.dial_freq}}</td>\n\t\t<td style=\"width: 50px\">{{msg.dx_call_snr}}</td>\n\t\t<td style=\"width: 100px\">{{msg.dx_call}}</td>\n\t\t<td>{{msg.dx_call_grid}}</td>\n\t\t<td style=\"width: 200px\">{{msg.target_country}}</td>\n\t\t<td style=\"width: 100px\">{{msg.origin_bearing}}&deg;<br>{{msg.origin_bearing_name}}</td>\n\t\t<td style=\"width: 100px\">{{msg.origin_distance_miles}}<br>Miles</td>\n\t</tr>\n</table>",
+        "format": "<table style=\"width: 100%\">\n\t<tr><td style=\"width: 75px\">Time</td>               <td style=\"width: 50px\">Freq.</td>          <td style=\"width: 50px\">Signal</td>                 <td style=\"width: 120px\">Station Call</td>      <td>Grid</td>                   <td style=\"width: 175px\">Country</td>                   <td style=\"width: 150px\">Bearing</td>                                                       <td style=\"width: 100px\">Distance</td></tr>\n\t<tr><td style=\"width: 75px\">{{msg.timestamp}}</td>  <td style=\"width: 50px\">{{msg.freq}}</td>   <td style=\"width: 50px\">{{msg.dx_call_snr}}</td>    <td style=\"width: 120px\">{{msg.dx_call}}</td>   <td>{{msg.dx_call_grid}}</td>   <td style=\"width: 175px\">{{msg.target_country}}</td>    <td style=\"width: 150px\">{{msg.origin_bearing}}&deg; {{msg.origin_bearing_name}}</td>    <td style=\"width: 100px\">{{msg.origin_distance_miles}} Miles</td>\n\t</tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -24,7 +25,7 @@
         "type": "function",
         "z": "2dc86f2b.14fd68",
         "name": "Status Message Decode / Process",
-        "func": "\n// Need Additional Checks In Place For Text\n//\n\n// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    //msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\nreturn msg;",
+        "func": "\n// Need Additional Checks In Place For Text\n//\n\n// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    //msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\n\n        var d = new Date();\n        var utch = d.getUTCHours();   if (utch < 10){utch = '0' + utch;}\n        var utcm = d.getUTCMinutes(); if (utcm < 10){utcm = '0' + utcm;}\n        var utcs = d.getUTCSeconds(); if (utcs < 10){utcs = '0' + utcs;}\n        this_msg_time = utch + ':' + utcm + ':' + utcs;\n\nmsg.timestamp =this_msg_time;\nmsg.freq = msg.dial_freq / 1000000;\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",

@@ -1,0 +1,363 @@
+[
+    {
+        "id": "8f371112.7b051",
+        "type": "link in",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "links": [
+            "760f003f.fa4df8"
+        ],
+        "x": 295,
+        "y": 1480,
+        "wires": [
+            [
+                "7672a035.05de"
+            ]
+        ]
+    },
+    {
+        "id": "7672a035.05de",
+        "type": "switch",
+        "z": "2dc86f2b.14fd68",
+        "name": "message_type",
+        "property": "template_message_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "calling_cq",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "calling_station",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "in_qso",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "full_status",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "partial_status",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 420,
+        "y": 1480,
+        "wires": [
+            [
+                "60e1b467.883b0c"
+            ],
+            [
+                "f8ee135.5550b7"
+            ],
+            [
+                "3edf6b8f.efbec4"
+            ],
+            [
+                "d3124e19.b748b8"
+            ],
+            [
+                "d3124e19.b748b8"
+            ],
+            [
+                "752876.6ae15f8c"
+            ]
+        ]
+    },
+    {
+        "id": "752876.6ae15f8c",
+        "type": "debug",
+        "z": "2dc86f2b.14fd68",
+        "name": "Other / Unknown",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "qso_message_ascii",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "c2dc45ad.aa1298",
+        "type": "ui_template",
+        "z": "2dc86f2b.14fd68",
+        "group": "b9eaaf73.3397e8",
+        "name": "Decoded Message Details / Updating Messages",
+        "order": 1,
+        "width": 27,
+        "height": 9,
+        "format": "<table style=\"width: 100%\">\n\t<tr><td style=\"width: 85px\">Time</td>                   <td style=\"width: 50px\">Band</td>                   <td style=\"width: 50px\">Signal</td>                 <td style=\"width: 90px\">CQ/Calling/QSO</td>         <td style=\"width: 250px\">Message</td>               <td style=\"width: 250px\">Origin Country</td>        <td style=\"width: 250px\">Target Country</td>            <td style=\"width: 100px\">TX Bearing</td>            <td style=\"width: 100px\">TX Distance</td>           <td style=\"width: 100px\">Dest Bearing</td>          <td style=\"width: 125px\">Dest Distance</td></tr>\n\t<tr><td style=\"width: 85px\">{{msg.message_1[0]}}</td>   <td style=\"width: 50px\">{{msg.message_1[1]}}</td>   <td style=\"width: 50px\">{{msg.message_1[2]}}</td>   <td style=\"width: 90px\">{{msg.message_1[3]}}</td>   <td style=\"width: 250px\">{{msg.message_1[4]}}</td>  <td style=\"width: 250px\">{{msg.message_1[5]}}</td>  <td style=\"width: 250px\">{{msg.message_1[6]}}</td>  <td style=\"width: 100px\">{{msg.message_1[7]}}</td>  <td style=\"width: 100px\">{{msg.message_1[8]}}</td>  <td style=\"width: 100px\">{{msg.message_1[9]}}</td>  <td style=\"width: 125px\">{{msg.message_1[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_2[0]}}</td>   <td style=\"width: 50px\">{{msg.message_2[1]}}</td>   <td style=\"width: 50px\">{{msg.message_2[2]}}</td>   <td style=\"width: 90px\">{{msg.message_2[3]}}</td>   <td style=\"width: 250px\">{{msg.message_2[4]}}</td>  <td style=\"width: 250px\">{{msg.message_2[5]}}</td>  <td style=\"width: 250px\">{{msg.message_2[6]}}</td>  <td style=\"width: 100px\">{{msg.message_2[7]}}</td>  <td style=\"width: 100px\">{{msg.message_2[8]}}</td>  <td style=\"width: 100px\">{{msg.message_2[9]}}</td>  <td style=\"width: 125px\">{{msg.message_2[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_3[0]}}</td>   <td style=\"width: 50px\">{{msg.message_3[1]}}</td>   <td style=\"width: 50px\">{{msg.message_3[2]}}</td>   <td style=\"width: 90px\">{{msg.message_3[3]}}</td>   <td style=\"width: 250px\">{{msg.message_3[4]}}</td>  <td style=\"width: 250px\">{{msg.message_3[5]}}</td>  <td style=\"width: 250px\">{{msg.message_3[6]}}</td>  <td style=\"width: 100px\">{{msg.message_3[7]}}</td>  <td style=\"width: 100px\">{{msg.message_3[8]}}</td>  <td style=\"width: 100px\">{{msg.message_3[9]}}</td>  <td style=\"width: 125px\">{{msg.message_3[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_4[0]}}</td>   <td style=\"width: 50px\">{{msg.message_4[1]}}</td>   <td style=\"width: 50px\">{{msg.message_4[2]}}</td>   <td style=\"width: 90px\">{{msg.message_4[3]}}</td>   <td style=\"width: 250px\">{{msg.message_4[4]}}</td>  <td style=\"width: 250px\">{{msg.message_4[5]}}</td>  <td style=\"width: 250px\">{{msg.message_4[6]}}</td>  <td style=\"width: 100px\">{{msg.message_4[7]}}</td>  <td style=\"width: 100px\">{{msg.message_4[8]}}</td>  <td style=\"width: 100px\">{{msg.message_4[9]}}</td>  <td style=\"width: 125px\">{{msg.message_4[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_5[0]}}</td>   <td style=\"width: 50px\">{{msg.message_5[1]}}</td>   <td style=\"width: 50px\">{{msg.message_5[2]}}</td>   <td style=\"width: 90px\">{{msg.message_5[3]}}</td>   <td style=\"width: 250px\">{{msg.message_5[4]}}</td>  <td style=\"width: 250px\">{{msg.message_5[5]}}</td>  <td style=\"width: 250px\">{{msg.message_5[6]}}</td>  <td style=\"width: 100px\">{{msg.message_5[7]}}</td>  <td style=\"width: 100px\">{{msg.message_5[8]}}</td>  <td style=\"width: 100px\">{{msg.message_5[9]}}</td>  <td style=\"width: 125px\">{{msg.message_5[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_6[0]}}</td>   <td style=\"width: 50px\">{{msg.message_6[1]}}</td>   <td style=\"width: 50px\">{{msg.message_6[2]}}</td>   <td style=\"width: 90px\">{{msg.message_6[3]}}</td>   <td style=\"width: 250px\">{{msg.message_6[4]}}</td>  <td style=\"width: 250px\">{{msg.message_6[5]}}</td>  <td style=\"width: 250px\">{{msg.message_6[6]}}</td>  <td style=\"width: 100px\">{{msg.message_6[7]}}</td>  <td style=\"width: 100px\">{{msg.message_6[8]}}</td>  <td style=\"width: 100px\">{{msg.message_6[9]}}</td>  <td style=\"width: 125px\">{{msg.message_6[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_7[0]}}</td>   <td style=\"width: 50px\">{{msg.message_7[1]}}</td>   <td style=\"width: 50px\">{{msg.message_7[2]}}</td>   <td style=\"width: 90px\">{{msg.message_7[3]}}</td>   <td style=\"width: 250px\">{{msg.message_7[4]}}</td>  <td style=\"width: 250px\">{{msg.message_7[5]}}</td>  <td style=\"width: 250px\">{{msg.message_7[6]}}</td>  <td style=\"width: 100px\">{{msg.message_7[7]}}</td>  <td style=\"width: 100px\">{{msg.message_7[8]}}</td>  <td style=\"width: 100px\">{{msg.message_7[9]}}</td>  <td style=\"width: 125px\">{{msg.message_7[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_8[0]}}</td>   <td style=\"width: 50px\">{{msg.message_8[1]}}</td>   <td style=\"width: 50px\">{{msg.message_8[2]}}</td>   <td style=\"width: 90px\">{{msg.message_8[3]}}</td>   <td style=\"width: 250px\">{{msg.message_8[4]}}</td>  <td style=\"width: 250px\">{{msg.message_8[5]}}</td>  <td style=\"width: 250px\">{{msg.message_8[6]}}</td>  <td style=\"width: 100px\">{{msg.message_8[7]}}</td>  <td style=\"width: 100px\">{{msg.message_8[8]}}</td>  <td style=\"width: 100px\">{{msg.message_8[9]}}</td>  <td style=\"width: 125px\">{{msg.message_8[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_9[0]}}</td>   <td style=\"width: 50px\">{{msg.message_9[1]}}</td>   <td style=\"width: 50px\">{{msg.message_9[2]}}</td>   <td style=\"width: 90px\">{{msg.message_9[3]}}</td>   <td style=\"width: 250px\">{{msg.message_9[4]}}</td>  <td style=\"width: 250px\">{{msg.message_9[5]}}</td>  <td style=\"width: 250px\">{{msg.message_9[6]}}</td>  <td style=\"width: 100px\">{{msg.message_9[7]}}</td>  <td style=\"width: 100px\">{{msg.message_9[8]}}</td>  <td style=\"width: 100px\">{{msg.message_9[9]}}</td>  <td style=\"width: 125px\">{{msg.message_9[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_10[0]}}</td>  <td style=\"width: 50px\">{{msg.message_10[1]}}</td>  <td style=\"width: 50px\">{{msg.message_10[2]}}</td>  <td style=\"width: 90px\">{{msg.message_10[3]}}</td>  <td style=\"width: 250px\">{{msg.message_10[4]}}</td> <td style=\"width: 250px\">{{msg.message_10[5]}}</td> <td style=\"width: 250px\">{{msg.message_10[6]}}</td> <td style=\"width: 100px\">{{msg.message_10[7]}}</td> <td style=\"width: 100px\">{{msg.message_10[8]}}</td> <td style=\"width: 100px\">{{msg.message_10[9]}}</td> <td style=\"width: 125px\">{{msg.message_10[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_11[0]}}</td>  <td style=\"width: 50px\">{{msg.message_11[1]}}</td>  <td style=\"width: 50px\">{{msg.message_11[2]}}</td>  <td style=\"width: 90px\">{{msg.message_11[3]}}</td>  <td style=\"width: 250px\">{{msg.message_11[4]}}</td> <td style=\"width: 250px\">{{msg.message_11[5]}}</td> <td style=\"width: 250px\">{{msg.message_11[6]}}</td> <td style=\"width: 100px\">{{msg.message_11[7]}}</td> <td style=\"width: 100px\">{{msg.message_11[8]}}</td> <td style=\"width: 100px\">{{msg.message_11[9]}}</td> <td style=\"width: 125px\">{{msg.message_11[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_12[0]}}</td>  <td style=\"width: 50px\">{{msg.message_12[1]}}</td>  <td style=\"width: 50px\">{{msg.message_12[2]}}</td>  <td style=\"width: 90px\">{{msg.message_12[3]}}</td>  <td style=\"width: 250px\">{{msg.message_12[4]}}</td> <td style=\"width: 250px\">{{msg.message_12[5]}}</td> <td style=\"width: 250px\">{{msg.message_12[6]}}</td> <td style=\"width: 100px\">{{msg.message_12[7]}}</td> <td style=\"width: 100px\">{{msg.message_12[8]}}</td> <td style=\"width: 100px\">{{msg.message_12[9]}}</td> <td style=\"width: 125px\">{{msg.message_12[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_13[0]}}</td>  <td style=\"width: 50px\">{{msg.message_13[1]}}</td>  <td style=\"width: 50px\">{{msg.message_13[2]}}</td>  <td style=\"width: 90px\">{{msg.message_13[3]}}</td>  <td style=\"width: 250px\">{{msg.message_13[4]}}</td> <td style=\"width: 250px\">{{msg.message_13[5]}}</td> <td style=\"width: 250px\">{{msg.message_13[6]}}</td> <td style=\"width: 100px\">{{msg.message_13[7]}}</td> <td style=\"width: 100px\">{{msg.message_13[8]}}</td> <td style=\"width: 100px\">{{msg.message_13[9]}}</td> <td style=\"width: 125px\">{{msg.message_13[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_14[0]}}</td>  <td style=\"width: 50px\">{{msg.message_14[1]}}</td>  <td style=\"width: 50px\">{{msg.message_14[2]}}</td>  <td style=\"width: 90px\">{{msg.message_14[3]}}</td>  <td style=\"width: 250px\">{{msg.message_14[4]}}</td> <td style=\"width: 250px\">{{msg.message_14[5]}}</td> <td style=\"width: 250px\">{{msg.message_14[6]}}</td> <td style=\"width: 100px\">{{msg.message_14[7]}}</td> <td style=\"width: 100px\">{{msg.message_14[8]}}</td> <td style=\"width: 100px\">{{msg.message_14[9]}}</td> <td style=\"width: 125px\">{{msg.message_14[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_15[0]}}</td>  <td style=\"width: 50px\">{{msg.message_15[1]}}</td>  <td style=\"width: 50px\">{{msg.message_15[2]}}</td>  <td style=\"width: 90px\">{{msg.message_15[3]}}</td>  <td style=\"width: 250px\">{{msg.message_15[4]}}</td> <td style=\"width: 250px\">{{msg.message_15[5]}}</td> <td style=\"width: 250px\">{{msg.message_15[6]}}</td> <td style=\"width: 100px\">{{msg.message_15[7]}}</td> <td style=\"width: 100px\">{{msg.message_15[8]}}</td> <td style=\"width: 100px\">{{msg.message_15[9]}}</td> <td style=\"width: 125px\">{{msg.message_15[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_16[0]}}</td>  <td style=\"width: 50px\">{{msg.message_16[1]}}</td>  <td style=\"width: 50px\">{{msg.message_16[2]}}</td>  <td style=\"width: 90px\">{{msg.message_16[3]}}</td>  <td style=\"width: 250px\">{{msg.message_16[4]}}</td> <td style=\"width: 250px\">{{msg.message_16[5]}}</td> <td style=\"width: 250px\">{{msg.message_16[6]}}</td> <td style=\"width: 100px\">{{msg.message_16[7]}}</td> <td style=\"width: 100px\">{{msg.message_16[8]}}</td> <td style=\"width: 100px\">{{msg.message_16[9]}}</td> <td style=\"width: 125px\">{{msg.message_16[10]}}</td></tr>\n    <tr><td style=\"width: 85px\">{{msg.message_17[0]}}</td>  <td style=\"width: 50px\">{{msg.message_17[1]}}</td>  <td style=\"width: 50px\">{{msg.message_17[2]}}</td>  <td style=\"width: 90px\">{{msg.message_17[3]}}</td>  <td style=\"width: 250px\">{{msg.message_17[4]}}</td> <td style=\"width: 250px\">{{msg.message_17[5]}}</td> <td style=\"width: 250px\">{{msg.message_17[6]}}</td> <td style=\"width: 100px\">{{msg.message_17[7]}}</td> <td style=\"width: 100px\">{{msg.message_17[8]}}</td> <td style=\"width: 100px\">{{msg.message_17[9]}}</td> <td style=\"width: 125px\">{{msg.message_17[10]}}</td></tr>\n\n\n    \n</table>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1360,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3124e19.b748b8",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "Status Message Decode / Process",
+        "func": "// Following Message Parts Used For Current Selected Contact Info\n// With The Addition Of DX_Call's Country As Decoded By My Function\n// As Well As Distance and Bearing To DX_Call's Gridquare (If Known)\n\n//  dial_freq: 14074000\n    //msg.dial_freq = flow.get('current_band_scan') + 'M';\n\n//  mode_name: \"FT8\"\n//  dx_call: \"ES5QA\"\n//  dx_call_snr: \"-14\"\n//  dx_call_grid: \"KO38\"\n\n//  target_country: \"Estonia\"\n//  origin_distance_miles_named: 5032 Miles\n\n//  origin_distance_kilos: 7445\n//  origin_bearing: 33\n//  origin_bearing_name: \"North-West\"\n\n        var d = new Date();\n        var utch = d.getUTCHours();   if (utch < 10){utch = '0' + utch;}\n        var utcm = d.getUTCMinutes(); if (utcm < 10){utcm = '0' + utcm;}\n        var utcs = d.getUTCSeconds(); if (utcs < 10){utcs = '0' + utcs;}\n        this_msg_time = utch + ':' + utcm + ':' + utcs;\n\nmsg.timestamp =this_msg_time;\nmsg.freq = msg.dial_freq / 1000000;\n\n// If no Selected Call, incoming packet from WSJT/JTDX/Etc Still pushes last SNR. This clears it out for visual appeal\nif (msg.template_message_type === 'partial_status' ){msg.dx_call_snr = null;}\n\n        if (msg.template_message_type !== 'partial_status' ){\n            if (msg.dx_call_grid === null){\n                                            msg.target_bearing = '*' + msg.target_bearing;\n                                            msg.target_distance_miles = '*' + msg.target_distance_miles;\n            }\n            \n        }\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1500,
+        "wires": [
+            [
+                "66ec17ec.b74e48",
+                "80eca6f4.51a13"
+            ]
+        ]
+    },
+    {
+        "id": "66ec17ec.b74e48",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "Check Rotor Status",
+        "func": "\n flow.set('selected_bearing',msg.target_bearing);\n \nif (!isNaN(msg.target_bearing)){msg.enabled = true; msg.topic = msg.target_bearing;} else {msg.enabled = false;}\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 1540,
+        "wires": [
+            [
+                "76f9128f.46081c"
+            ]
+        ]
+    },
+    {
+        "id": "b27fb642.90f728",
+        "type": "debug",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "3edf6b8f.efbec4",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "in_qso Message To Array",
+        "func": "if (msg.template_message_type === 'in_qso'){\n\n\n        var d = new Date();\n        var utch = d.getUTCHours();   if (utch < 10){utch = '0' + utch;}\n        var utcm = d.getUTCMinutes(); if (utcm < 10){utcm = '0' + utcm;}\n        var utcs = d.getUTCSeconds(); if (utcs < 10){utcs = '0' + utcs;}\n        this_msg_time = utch + ':' + utcm + ':' + utcs;\n\n\n    array_payload  = this_msg_time + ',' \n    array_payload += flow.get('current_band_scan') + 'M,'\n    array_payload += msg.snr_value + ','\n    array_payload += 'QSO Message' + ','\n    array_payload += msg.qso_message + ','\n    array_payload += msg.origin_country + ','\n    \n    array_payload += msg.target_country + ',';\n    \n    if (msg.origin_country === 'United States'){\n        array_payload += '-USA-' + ',';\n        array_payload += '-USA-' + ',';    \n    } else {\n        array_payload += '*' + msg.origin_bearing + ',';\n        array_payload += '*' + msg.origin_distance_miles + ',';\n    }\n    \n    \n    if (msg.target_country === 'United States'){\n        array_payload += '-USA-' + ',';\n        array_payload += '-USA-';    \n    } else {\n        array_payload += '*' + msg.target_bearing + ',';\n        array_payload += '*' + msg.target_distance_miles;\n    }\n    \n    \n    \n    msg.payload = array_payload;\n\nreturn msg;    \n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1460,
+        "wires": [
+            [
+                "4e4ea760.2b879"
+            ]
+        ]
+    },
+    {
+        "id": "4e4ea760.2b879",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "All Messages To Array",
+        "func": "\nnew_array_string = '';\nnew_template_string = '';\ntemp_counter = 0;\n\nmyArr = [];\n\nif (typeof flow.get('message_history') !== 'undefined'){\n        let str = flow.get('message_history');\n        str = str.substring(0, str.length - 1); // Remove last marker in string\n        myArr = str.split(\";\");\n        temp_counter = myArr.length;\n}\n\n            this_message = msg.payload;\n            this_message.trim();\n\n\nif (temp_counter >17){myArr = [];} // Kills out of control array\nif (temp_counter <17){  myArr.push(this_message); } else { myArr.shift(); myArr.push(this_message); }\n\n\nfor (let i = 0; i < myArr.length; i++) {\n  new_array_string += myArr[i] + ';';\n  new_template_string += myArr[i] + \"<br>\";\n} \n\nflow.set('message_history',new_array_string);\nmsg.payload = new_array_string;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1420,
+        "wires": [
+            [
+                "a568dfc7.3f484"
+            ]
+        ]
+    },
+    {
+        "id": "f8ee135.5550b7",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "calling_station Message To Array",
+        "func": "if (msg.template_message_type === 'calling_station'){\n\n\n        var d = new Date();\n        var utch = d.getUTCHours();   if (utch < 10){utch = '0' + utch;}\n        var utcm = d.getUTCMinutes(); if (utcm < 10){utcm = '0' + utcm;}\n        var utcs = d.getUTCSeconds(); if (utcs < 10){utcs = '0' + utcs;}\n        this_msg_time = utch + ':' + utcm + ':' + utcs;\n\n\n    array_payload  = this_msg_time + ',' \n    array_payload += flow.get('current_band_scan') +'M,'\n    array_payload += msg.snr_value + ','\n    array_payload += 'Calling Station' + ','\n    array_payload += msg.qso_message + ','\n    array_payload += msg.origin_country + ','\n    \n    array_payload += msg.target_country + ',';\n    \n    array_payload += msg.origin_bearing + ',';\n    array_payload += msg.origin_distance_miles + ',';\n    \n    array_payload += '*' + msg.target_bearing + ',';\n    array_payload += '*' + msg.target_distance_miles;\n    \n    \n    \n    msg.payload = array_payload;\n\nreturn msg;    \n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1420,
+        "wires": [
+            [
+                "4e4ea760.2b879"
+            ]
+        ]
+    },
+    {
+        "id": "60e1b467.883b0c",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "calling_cq Message To Array",
+        "func": "if (msg.template_message_type === 'calling_cq'){\n\n\n        var d = new Date();\n        var utch = d.getUTCHours();   if (utch < 10){utch = '0' + utch;}\n        var utcm = d.getUTCMinutes(); if (utcm < 10){utcm = '0' + utcm;}\n        var utcs = d.getUTCSeconds(); if (utcs < 10){utcs = '0' + utcs;}\n        this_msg_time = utch + ':' + utcm + ':' + utcs;\n\n\n    array_payload  = this_msg_time + ',' \n    array_payload += flow.get('current_band_scan') +'M,'\n    array_payload += msg.snr_value + ','\n    array_payload += 'Calling CQ' +  ','\n    array_payload += msg.qso_message + ','\n    array_payload += msg.origin_country + ','\n    array_payload += '-CQ-' + '' + ',';\n    array_payload += msg.origin_bearing + ',';\n    array_payload += msg.origin_distance_miles + ',';\n    array_payload += '----,----';\n    \n    msg.payload = array_payload;\n\nreturn msg;    \n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1380,
+        "wires": [
+            [
+                "4e4ea760.2b879"
+            ]
+        ]
+    },
+    {
+        "id": "a568dfc7.3f484",
+        "type": "function",
+        "z": "2dc86f2b.14fd68",
+        "name": "Array To Payload",
+        "func": "msg.payload = 'Array To Template Array'\nnew_array_string = '';\nnew_template_string = '';\ntemp_counter = 0;\n\nmyArr = [];\n\nif (typeof flow.get('message_history') !== 'undefined'){\n        let str = flow.get('message_history');\n        str = str.substring(0, str.length - 1); // Remove last marker in string\n        myArr = str.split(\";\");\n        temp_counter = myArr.length;\n}\n\nbig_array = [];\n\nfor (let i = 0; i < myArr.length; i++) {\n        tempArr = [];\n            tempArr = myArr[i].split(\",\");\n            big_array.push({\"time\":tempArr[0],\"band\":tempArr[1]});\n            if (i === 0){msg.message_1 = tempArr}\n            if (i === 1){msg.message_2 = tempArr}\n            if (i === 2){msg.message_3 = tempArr}\n            if (i === 3){msg.message_4 = tempArr}\n            if (i === 4){msg.message_5 = tempArr}\n            if (i === 5){msg.message_6 = tempArr}\n            if (i === 6){msg.message_7 = tempArr}\n            if (i === 7){msg.message_8 = tempArr}\n            if (i === 8){msg.message_9 = tempArr}\n            if (i === 9){msg.message_10 = tempArr}\n            if (i === 10){msg.message_11 = tempArr}\n            if (i === 11){msg.message_12 = tempArr}\n            if (i === 12){msg.message_13 = tempArr}\n            if (i === 13){msg.message_14 = tempArr}\n            if (i === 14){msg.message_15 = tempArr}\n            if (i === 15){msg.message_16 = tempArr}\n            if (i === 16){msg.message_17 = tempArr}\n}\nmsg.msg_array = big_array;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 1460,
+        "wires": [
+            [
+                "c2dc45ad.aa1298",
+                "3b81ab42.52cb14"
+            ]
+        ]
+    },
+    {
+        "id": "3b81ab42.52cb14",
+        "type": "debug",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "76f9128f.46081c",
+        "type": "ui_button",
+        "z": "2dc86f2b.14fd68",
+        "name": "",
+        "group": "a8bcedbe.f9cf88",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Rotate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "selected_bearing",
+        "payloadType": "flow",
+        "topic": "rotate_antenna",
+        "topicType": "str",
+        "x": 1190,
+        "y": 1540,
+        "wires": [
+            [
+                "b27fb642.90f728"
+            ]
+        ]
+    },
+    {
+        "id": "80eca6f4.51a13",
+        "type": "ui_template",
+        "z": "2dc86f2b.14fd68",
+        "group": "a8bcedbe.f9cf88",
+        "name": "Status Message Display",
+        "order": 1,
+        "width": 15,
+        "height": 2,
+        "format": "<table style=\"width: 100%\">\n\t<tr><td style=\"width: 85px\">Time</td>             <td style=\"width: 75px\">Freq.</td>       <td style=\"width: 75px\">Signal</td>             <td style=\"width: 125px\">Calling</td>        <td style=\"width: 250px\">Country</td>        <td style=\"width: 100px\">Bearing</td>        <td style=\"width: 100px\">Distance</td></tr>\n\t<tr><td style=\"width: 85px\">{{msg.timestamp}}</td><td style=\"width: 75px\">{{msg.freq}}</td><td style=\"width: 75px\">{{msg.dx_call_snr}}</td><td style=\"width: 125px\">{{msg.dx_call}}</td><td style=\"width: 250px\">{{msg.target_country}}</td><td style=\"width: 100px\">{{msg.target_bearing}}</td><td style=\"width: 100px\">{{msg.target_distance_miles}}</td></tr>\n</table>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1050,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9eaaf73.3397e8",
+        "type": "ui_group",
+        "name": "Decoded Message Details",
+        "tab": "9aeb9b49.3d98",
+        "order": 5,
+        "disp": true,
+        "width": "27",
+        "collapse": false
+    },
+    {
+        "id": "a8bcedbe.f9cf88",
+        "type": "ui_group",
+        "name": "Currently Selected Contact 2",
+        "tab": "9aeb9b49.3d98",
+        "order": 3,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "9aeb9b49.3d98",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
